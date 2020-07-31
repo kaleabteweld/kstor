@@ -1,28 +1,32 @@
-import React, { Component } from "react";
+import React, { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import Stor from "./redux/Stor";
 import { INCRMENT, DECRMENT } from "./redux/actions/conter";
 
-class Root extends Component {
-  conter = useSelector((state) => state.conter);
+function Root (){
 
-  add = () => {
+  const conter = useSelector(state => {
+    console.log(state)
+    return state.conter
+  });
+
+  
+  var add = () => {
     Stor.dispatch(INCRMENT());
   };
-  sub = () => {
+  var sub = () => {
     Stor.dispatch(DECRMENT());
   };
 
-  render() {
     return (
       <div>
-        <button onClick={this.sub}>-</button>
-        <h1>{this.conter}</h1>
-        <button onClick={this.add}>+</button>
+        <button onClick={sub}>-</button>
+        <h1>{conter}</h1>
+        <button onClick={add}>+</button>
       </div>
     );
-  }
+
 }
 
 export default Root;
